@@ -1,4 +1,4 @@
-***End-to-End Diabetes Prediction using Deep Learning***
+*****End-to-End Diabetes Prediction using Deep Learning*****
 This project is a complete, end-to-end machine learning application that predicts the onset of diabetes based on clinical parameters. It uses an Artificial Neural Network (ANN) built with TensorFlow/Keras, served via a FastAPI backend, and is fully deployed to the cloud using Render.
 
 🚀 Live Demo
@@ -44,6 +44,7 @@ The project follows a standard MLOps structure to ensure scalability and maintai
 ├── requirements.txt        # Project dependencies
 └── setup.py                # For setting up the project as a local package
 
+
 ⚙️ Setup and Installation
 To run this project locally, follow these steps:
 
@@ -51,6 +52,7 @@ To run this project locally, follow these steps:
 
 git clone https://github.com/sutanu-pal/mlprojects.git
 cd mlprojects
+
 
 2. Create and activate a virtual environment:
 
@@ -62,9 +64,11 @@ venv\Scripts\activate
 python3 -m venv venv
 source venv/bin/activate
 
+
 3. Install the required dependencies:
 
 pip install -r requirements.txt
+
 
 🚀 Usage
 1. Train the Model
@@ -72,10 +76,12 @@ To train the model from scratch, run the training pipeline. This will create the
 
 python src/pipeline/train_pipeline.py
 
+
 2. Run the API Server Locally
 Once the artifacts are created, you can start the FastAPI server.
 
 uvicorn src.app:app --reload
+
 
 The API will be available at http://127.0.0.1:8000. You can view the interactive documentation at http://127.0.0.1:8000/docs.
 
@@ -102,9 +108,11 @@ Request Body (JSON):
   "Age": 50
 }
 
+
 Success Response (JSON):
 
 {
   "prediction": "Positive for Diabetes",
   "prediction_value": 1
 }
+
