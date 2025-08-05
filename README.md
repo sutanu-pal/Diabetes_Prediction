@@ -2,7 +2,7 @@
 This project is a complete, end-to-end machine learning application that predicts the onset of diabetes based on clinical parameters. It uses an Artificial Neural Network (ANN) built with TensorFlow/Keras, served via a FastAPI backend, and is fully deployed to the cloud using Render.
 
 🚀 Live Demo
-Frontend Application: https://diabetes-management.onrender.com
+Frontend Application: https://diabtes-management.onrender.com
 
 Backend API Docs: https://sutanu-diabetes-api.onrender.com/docs
 
