@@ -1,4 +1,5 @@
 import sys
+from src.logger import logging
 
 # Helper function to extract detailed error info
 def error_message_details(error, error_details: sys):

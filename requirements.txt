@@ -1,4 +1,8 @@
 pandas
 numpy
-seaborn
+scikit-learn
+tensorflow
+fastapi
+uvicorn[standard]
+python-multipart
 -e .
