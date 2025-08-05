@@ -10,61 +10,172 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .health-gradient {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .input-focus:focus {
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .medical-icon {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
     </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
-        <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Diabetes Prediction Model</h1>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <!-- Floating medical elements -->
+    <div class="fixed top-10 left-10 text-6xl opacity-10 floating">🩺</div>
+    <div class="fixed top-20 right-20 text-4xl opacity-10 floating" style="animation-delay: 1s;">💊</div>
+    <div class="fixed bottom-20 left-20 text-5xl opacity-10 floating" style="animation-delay: 2s;">🏥</div>
+    
+    <div class="bg-white/95 backdrop-blur-sm p-10 rounded-3xl card-shadow w-full max-w-4xl relative overflow-hidden">
+        <!-- Header with medical theme -->
+        <div class="text-center mb-8 relative">
+            <div class="medical-icon text-6xl mb-4">🩸</div>
+            <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
+                Diabetes Risk Assessment
+            </h1>
+            <p class="text-gray-600 text-lg">Advanced AI-powered health screening tool</p>
+            <div class="w-24 h-1 health-gradient mx-auto mt-4 rounded-full"></div>
+        </div>
         
-        <!-- The form that will send data to the API -->
-        <form id="prediction-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Enhanced form with better visual hierarchy -->
+        <form id="prediction-form" class="grid grid-cols-1 md:grid-cols-2 gap-8">
             
-            <!-- Input fields for each feature -->
-            <div>
-                <label for="pregnancies" class="block text-sm font-medium text-gray-700">Pregnancies</label>
-                <input type="number" id="pregnancies" name="pregnancies" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., 6">
+            <!-- Enhanced input fields with icons and better styling -->
+            <div class="relative group">
+                <label for="pregnancies" class="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                    <span class="mr-2">👶</span>
+                    Pregnancies
+                </label>
+                <input type="number" id="pregnancies" name="pregnancies" required 
+                       class="input-focus w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-300" 
+                       placeholder="Number of pregnancies">
             </div>
-            <div>
-                <label for="glucose" class="block text-sm font-medium text-gray-700">Glucose</label>
-                <input type="number" id="glucose" name="glucose" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., 148">
+            
+            <div class="relative group">
+                <label for="glucose" class="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                    <span class="mr-2">🍯</span>
+                    Glucose Level
+                </label>
+                <input type="number" id="glucose" name="glucose" required 
+                       class="input-focus w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-300" 
+                       placeholder="Blood glucose (mg/dL)">
             </div>
-            <div>
-                <label for="blood_pressure" class="block text-sm font-medium text-gray-700">Blood Pressure</label>
-                <input type="number" id="blood_pressure" name="blood_pressure" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., 72">
+            
+            <div class="relative group">
+                <label for="blood_pressure" class="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                    <span class="mr-2">💓</span>
+                    Blood Pressure
+                </label>
+                <input type="number" id="blood_pressure" name="blood_pressure" required 
+                       class="input-focus w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-300" 
+                       placeholder="Diastolic BP (mmHg)">
             </div>
-            <div>
-                <label for="skin_thickness" class="block text-sm font-medium text-gray-700">Skin Thickness</label>
-                <input type="number" id="skin_thickness" name="skin_thickness" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., 35">
+            
+            <div class="relative group">
+                <label for="skin_thickness" class="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                    <span class="mr-2">📏</span>
+                    Skin Thickness
+                </label>
+                <input type="number" id="skin_thickness" name="skin_thickness" required 
+                       class="input-focus w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-300" 
+                       placeholder="Triceps skinfold (mm)">
             </div>
-            <div>
-                <label for="insulin" class="block text-sm font-medium text-gray-700">Insulin</label>
-                <input type="number" id="insulin" name="insulin" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., 0">
+            
+            <div class="relative group">
+                <label for="insulin" class="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                    <span class="mr-2">💉</span>
+                    Insulin Level
+                </label>
+                <input type="number" id="insulin" name="insulin" required 
+                       class="input-focus w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-300" 
+                       placeholder="Serum insulin (mu U/ml)">
             </div>
-            <div>
-                <label for="bmi" class="block text-sm font-medium text-gray-700">BMI</label>
-                <input type="number" step="0.1" id="bmi" name="bmi" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., 33.6">
+            
+            <div class="relative group">
+                <label for="bmi" class="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                    <span class="mr-2">⚖️</span>
+                    Body Mass Index
+                </label>
+                <input type="number" step="0.1" id="bmi" name="bmi" required 
+                       class="input-focus w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-300" 
+                       placeholder="BMI (kg/m²)">
             </div>
-            <div>
-                <label for="diabetes_pedigree_function" class="block text-sm font-medium text-gray-700">Diabetes Pedigree Function</label>
-                <input type="number" step="0.001" id="diabetes_pedigree_function" name="diabetes_pedigree_function" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., 0.627">
+            
+            <div class="relative group">
+                <label for="diabetes_pedigree_function" class="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                    <span class="mr-2">🧬</span>
+                    Diabetes Pedigree
+                </label>
+                <input type="number" step="0.001" id="diabetes_pedigree_function" name="diabetes_pedigree_function" required 
+                       class="input-focus w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-300" 
+                       placeholder="Family history score">
             </div>
-            <div>
-                <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
-                <input type="number" id="age" name="age" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., 50">
+            
+            <div class="relative group">
+                <label for="age" class="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                    <span class="mr-2">🎂</span>
+                    Age
+                </label>
+                <input type="number" id="age" name="age" required 
+                       class="input-focus w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-300" 
+                       placeholder="Age in years">
             </div>
 
-            <!-- Submit Button -->
-            <div class="md:col-span-2 text-center">
-                <button type="submit" class="w-full inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Predict
+            <!-- Enhanced Submit Button -->
+            <div class="md:col-span-2 text-center mt-6">
+                <button type="submit" class="group relative w-full max-w-md mx-auto inline-flex items-center justify-center py-4 px-8 text-lg font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                    <span class="mr-3">🔍</span>
+                    Analyze Health Risk
+                    <span class="ml-3 group-hover:translate-x-1 transition-transform duration-300">→</span>
                 </button>
             </div>
         </form>
 
-        <!-- Div to display the prediction result -->
-        <div id="result" class="mt-6 text-center text-lg font-semibold text-gray-800">
+        <!-- Enhanced result display -->
+        <div id="result" class="mt-8 text-center">
             <!-- Prediction will be shown here -->
+        </div>
+        
+        <!-- Health tips section -->
+        <div class="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl border border-blue-100">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center justify-center">
+                <span class="mr-2">💡</span>
+                Health Tip
+            </h3>
+            <p class="text-gray-600 text-center">Regular monitoring of blood glucose levels and maintaining a healthy lifestyle can significantly reduce diabetes risk.</p>
         </div>
     </div>
 
@@ -78,9 +189,14 @@
             // Prevent the default form submission behavior (which would reload the page)
             event.preventDefault();
 
-            // Show a loading message
-            resultDiv.textContent = 'Getting prediction...';
-            resultDiv.className = 'mt-6 text-center text-lg font-semibold text-gray-600';
+            // Show a loading message with enhanced styling
+            resultDiv.innerHTML = `
+                <div class="pulse-animation p-6 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl border border-yellow-200">
+                    <div class="text-2xl mb-2">🔄</div>
+                    <div class="text-lg font-semibold text-gray-700">Analyzing your health data...</div>
+                    <div class="text-sm text-gray-500 mt-1">Please wait while our AI processes your information</div>
+                </div>
+            `;
 
             // Create a FormData object from the form
             const formData = new FormData(form);
@@ -115,20 +231,41 @@
                 // Parse the JSON response from the server
                 const result = await response.json();
 
-                // Display the prediction result
-                resultDiv.textContent = `Prediction: ${result.prediction}`;
-                
-                // Change the color based on the result
+                // Display the prediction result with enhanced styling
                 if (result.prediction_value === 1) {
-                    resultDiv.className = 'mt-6 text-center text-lg font-bold text-red-600';
+                    resultDiv.innerHTML = `
+                        <div class="p-8 bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl border-2 border-red-200 shadow-lg">
+                            <div class="text-5xl mb-4">⚠️</div>
+                            <div class="text-2xl font-bold text-red-700 mb-2">High Risk Detected</div>
+                            <div class="text-lg text-red-600 mb-4">Prediction: ${result.prediction}</div>
+                            <div class="text-sm text-red-500 bg-red-100 p-3 rounded-lg">
+                                <strong>Recommendation:</strong> Please consult with a healthcare professional for proper evaluation and guidance.
+                            </div>
+                        </div>
+                    `;
                 } else {
-                    resultDiv.className = 'mt-6 text-center text-lg font-bold text-green-600';
+                    resultDiv.innerHTML = `
+                        <div class="p-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl border-2 border-green-200 shadow-lg">
+                            <div class="text-5xl mb-4">✅</div>
+                            <div class="text-2xl font-bold text-green-700 mb-2">Low Risk</div>
+                            <div class="text-lg text-green-600 mb-4">Prediction: ${result.prediction}</div>
+                            <div class="text-sm text-green-600 bg-green-100 p-3 rounded-lg">
+                                <strong>Great news!</strong> Continue maintaining a healthy lifestyle to keep your diabetes risk low.
+                            </div>
+                        </div>
+                    `;
                 }
 
             } catch (error) {
-                // If an error occurs, display it
-                resultDiv.textContent = `Error: ${error.message}`;
-                resultDiv.className = 'mt-6 text-center text-lg font-semibold text-red-500';
+                // If an error occurs, display it with enhanced styling
+                resultDiv.innerHTML = `
+                    <div class="p-8 bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl border-2 border-red-200 shadow-lg">
+                        <div class="text-4xl mb-4">❌</div>
+                        <div class="text-xl font-bold text-red-700 mb-2">Analysis Failed</div>
+                        <div class="text-lg text-red-600 mb-4">Error: ${error.message}</div>
+                        <div class="text-sm text-red-500">Please check your internet connection and try again.</div>
+                    </div>
+                `;
                 console.error('There was a problem with the fetch operation:', error);
             }
         });
