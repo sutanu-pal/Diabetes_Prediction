@@ -1,4 +1,4 @@
-End-to-End Diabetes Prediction using Deep Learning
+***End-to-End Diabetes Prediction using Deep Learning***
 This project is a complete, end-to-end machine learning application that predicts the onset of diabetes based on clinical parameters. It uses an Artificial Neural Network (ANN) built with TensorFlow/Keras, served via a FastAPI backend, and is fully deployed to the cloud using Render.
 
 🚀 Live Demo
