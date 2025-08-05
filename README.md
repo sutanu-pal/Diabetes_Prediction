@@ -31,11 +31,12 @@ Deployment: Git, GitHub, Render
 📂 Project Structure
 The project follows a standard MLOps structure to ensure scalability and maintainability.
 
-├── artifacts/              # Stores the trained model (model.h5) and preprocessor
+.
+├── artifacts/              # Stores trained model (model.h5) and preprocessor
 ├── src/
 │   ├── pipeline/
 │   │   ├── train_pipeline.py   # Script to run the full training process
-│   │   └── predict_pipeline.py # Classes for loading the model and making predictions
+│   │   └── predict_pipeline.py # Classes for loading model and making predictions
 │   ├── app.py                  # The FastAPI application server
 │   ├── logger.py               # Custom logging setup
 │   └── exception.py            # Custom exception handling
