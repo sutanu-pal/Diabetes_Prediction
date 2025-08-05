@@ -19,7 +19,7 @@ app = FastAPI()
 # IMPORTANT: In production, you should replace "*" with the actual URL of your frontend
 # We will get this URL after we deploy the frontend in Step 3.
 # For now, we leave it as "*" to make the initial deployment easy.
-origins = ["*"]
+origins = ["https://diabtes-management.onrender.com"]
 
 app.add_middleware(
     CORSMiddleware,
