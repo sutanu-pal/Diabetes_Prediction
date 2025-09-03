@@ -15,8 +15,8 @@ This project is a complete, end-to-end machine learning application that predict
 *   **Frontend Application:** [https://diabtes-management.onrender.com](https://diabtes-management.onrender.com)
 *   **Backend API Docs:** [https://sutanu-diabetes-api.onrender.com/docs](https://sutanu-diabetes-api.onrender.com/docs)
 
-<!-- You can add a screenshot of your application here -->
-<!--  -->
+<img width="1891" height="863" alt="image" src="https://github.com/user-attachments/assets/b4d055d7-5c02-4f72-a735-d118a9bc98e0" />
+
 
 ## ✨ Features
 
